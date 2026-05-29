@@ -20,13 +20,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/cloud-gitops-node-app
-          GIT_SHA=${{ github.sha }}
-          docker build -t $IMAGE_NAME:$GIT_SHA .
+  run: |
+    IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/cloud-gitops-node-app
+    GIT_SHA=${{ github.sha }}
+    docker build -t $IMAGE_NAME:$GIT_SHA .
 
-      - name: Push Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/cloud-gitops-node-app
-          GIT_SHA=${{ github.sha }}
-          docker push $IMAGE_NAME:$GIT_SHA
+- name: Push Docker image
+  run: |
+    IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/cloud-gitops-node-app
+    GIT_SHA=${{ github.sha }}
+    docker push $IMAGE_NAME:$GIT_SHA
+
